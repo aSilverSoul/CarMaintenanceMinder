@@ -16,7 +16,15 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          children: <Widget>[carList],)
+          children: <Widget>[carList],
+        ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              //where we add the code for adding a car
+              //move to second page here
+       },
+        child: Icon(Icons.add),
+      ),
       ),
     );
   }

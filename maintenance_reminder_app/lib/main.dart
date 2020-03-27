@@ -1,67 +1,23 @@
 import 'package:flutter/material.dart';
+import 'screens/note_list.dart';
+//import 'package:flutter_app/screens/note_detail.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      title: 'Car Maintenance Reminder',
+      title: 'NoteKeeper',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+          primarySwatch: Colors.deepPurple
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Car Maintenance Reminder'),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: <Widget>[carList],
-        ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              //where we add the code for adding a car
-              //move to second page here
-       },
-        child: Icon(Icons.add),
-      ),
-      ),
+      home: NoteList(), //name of list used change to cars soon
     );
   }
-
-  Widget carList = Container(
-    padding: const EdgeInsets.all(32),
-    child: Row(
-      children: [
-        Expanded(
-          /*1*/
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /*2*/
-              Container(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  'Car Number 1',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Text(
-                'Car Detail',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                ),
-              ),
-            ],
-          ),
-        ),
-        /*3*/
-        Icon(
-          Icons.directions_car,
-          color: Colors.red[500],
-        ),
-       ],
-    ),
-  );}
+}

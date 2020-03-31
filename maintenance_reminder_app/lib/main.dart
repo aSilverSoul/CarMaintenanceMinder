@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/note_list.dart';
-//import 'package:flutter_app/screens/note_detail.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      title: 'NoteKeeper',
+      title: 'Car Maintenance Reminder',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.deepPurple
       ),
-      home: NoteList(), //name of list used change to cars soon
+      home: CarList(), //list of cars saved
     );
   }
 }

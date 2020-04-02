@@ -21,6 +21,7 @@ class _NoteDetailsState extends State<NoteDetails> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController weeklyMileageController = TextEditingController();
   static var _priorities = ['High', 'Low'];
 
   _NoteDetailsState(this.note, this.appBarTitle);
@@ -85,6 +86,22 @@ class _NoteDetailsState extends State<NoteDetails> {
                 },
                 decoration: InputDecoration(
                     labelText: 'Description',
+                    labelStyle: textStyle,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0))),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              child: TextField(
+                controller: weeklyMileageController,
+                style: textStyle,
+                onChanged: (value) {
+                  print('Something changed in weekly mileage Text Field');
+                  updateTitle();//change this
+                },
+                decoration: InputDecoration(
+                    labelText: 'Title',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0))),
@@ -169,9 +186,13 @@ class _NoteDetailsState extends State<NoteDetails> {
   void updateDescription() {
     note.description = descriptionController.text;
   }
+  void updateWeeklyMileage(){
+    note.weeklyMileage = int.parse(weeklyMileageController.text);//getting weekly mileage
+  }
 
   void _save() async {
     moveToLastScreen();
+    //int daysAdded = ;
     note.date = DateFormat.yMMMd().format(DateTime.now()); // date time
     int result;
     if (note.id != null) {

@@ -14,6 +14,7 @@ class DatabaseHelper {
   String colDescription = 'description';
   String colPriority = 'priority';
   String colDate = 'date';
+  String colWeeklyMileage = 'weeklyMileage';//new
 
   DatabaseHelper._createInstance();
 

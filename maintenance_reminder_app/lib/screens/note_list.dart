@@ -32,7 +32,7 @@ class _CarListState extends State<CarList> {
         tooltip: 'Add note',
         onPressed: () {
           print('FAB clciked');
-          navigateToDetails(Note('', '', 2),'Add note');
+          navigateToDetails(Note('','', 311, 2),'Add note');//weekly average mileage;
         },
       ),
     );

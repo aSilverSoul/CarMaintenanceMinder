@@ -1,14 +1,15 @@
 class Note {
   int _id;
   String _title;
-  String _description;
+  String _description;//use description as mileage for now change later
   String _date;
   int _priority;
+  int _weeklyMileage;
 
 
-  Note(this._title, this._date, this._priority, [this._description]);
+  Note(this._title, this._date, this._priority, this._weeklyMileage, [this._description]);
 
-  Note.withId(this._id, this._title, this._date, this._priority,
+  Note.withId(this._id, this._title, this._date, this._priority,this._weeklyMileage,
       [this._description]);
 
   int get id => _id;
@@ -16,6 +17,7 @@ class Note {
   String get description => _description;
   int get priority => _priority;
   String get date => _date;
+  int get weeklyMileage => _weeklyMileage;
 
   set title(String newTitle){
     if(newTitle.length <= 20){
@@ -32,7 +34,10 @@ class Note {
       this._priority = newPriority;
     }
   }
-  set date(String newDate){
+  set weeklyMileage(int newMileage){//new mileage setter
+    this._weeklyMileage = newMileage;
+  }
+  set date(String newDate){//setting date for the cars mileage
     this._date = newDate;
   }
 
@@ -45,6 +50,7 @@ class Note {
     map['description']= _description;
     map['priority']= _priority;
     map['date']= _date;
+    map['mileage']= _weeklyMileage;
     return map;
   }
 
@@ -54,5 +60,6 @@ class Note {
     this._description = map['description'];
     this._priority = map['priority'];
     this._date = map['date'];
+    this._weeklyMileage = map['mileage'];
   }
 }

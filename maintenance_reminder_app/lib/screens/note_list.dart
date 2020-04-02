@@ -23,7 +23,7 @@ class _CarListState extends State<CarList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text('Cars List'),
       ),
       body: getCarListView(),
       floatingActionButton: FloatingActionButton(
@@ -66,7 +66,7 @@ class _CarListState extends State<CarList> {
             ),
             onTap: () {
               print('The tile has been pressed!');
-              navigateToDetails(this.carList[index],'Edit Note');
+              navigateToDetails(this.carList[index],'Edit Vehicle Info');
             },
           ),
         );

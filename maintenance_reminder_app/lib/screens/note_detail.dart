@@ -172,7 +172,7 @@ class _NoteDetailsState extends State<NoteDetails> {
 
   void _save() async {
     moveToLastScreen();
-    note.date = DateFormat.yMMMd().format(DateTime.now());
+    note.date = DateFormat.yMMMd().format(DateTime.now()); // date time
     int result;
     if (note.id != null) {
       result = await databaseHelper.updateNote(note);

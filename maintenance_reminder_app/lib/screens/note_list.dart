@@ -28,11 +28,11 @@ class _CarListState extends State<CarList> {
       body: getCarListView(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.deepPurple,
         tooltip: 'Add note',
         onPressed: () {
           print('FAB clciked');
-          navigateToDetails(Note('','', 311, 2),'Add note');//weekly average mileage;
+          navigateToDetails(Note('','', 311, 2),'Add car');//weekly average mileage;
         },
       ),
     );
@@ -103,7 +103,7 @@ class _CarListState extends State<CarList> {
   void _delete(BuildContext context, Note note) async {
     int result = await databaseHelper.deleteNote(note.id);
     if (result != 0) {
-      _showSnackBar(context, 'Note Deleted Successfully');
+      _showSnackBar(context, 'vehicle info deleted successfully');
       updateListView();
     }
   }
@@ -118,7 +118,7 @@ class _CarListState extends State<CarList> {
   void navigateToDetails(Note note,String title) async {
     bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
       return NoteDetails(
-          note,title
+          note,title,
       );
     }));
     if (result== true){

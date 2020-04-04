@@ -27,10 +27,11 @@ class _NoteDetailsState extends State<NoteDetails> {
   _NoteDetailsState(this.note, this.appBarTitle);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {//these are used to display the details of a car
     TextStyle textStyle = Theme.of(context).textTheme.title;
     titleController.text = note.title;
     descriptionController.text = note.description;
+    weeklyMileageController.text = note.weeklyMileage.toString();
 
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +70,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                   updateTitle();
                 },
                 decoration: InputDecoration(
-                    labelText: 'Title',
+                    labelText: 'Car Name',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0))),
@@ -85,7 +86,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                   print('Something changed in Description Text Field');
                 },
                 decoration: InputDecoration(
-                    labelText: 'Description',
+                    labelText: 'Car Description',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0))),
@@ -98,10 +99,10 @@ class _NoteDetailsState extends State<NoteDetails> {
                 style: textStyle,
                 onChanged: (value) {
                   print('Something changed in weekly mileage Text Field');
-                  updateTitle();//change this
+                  updateWeeklyMileage();//change this
                 },
                 decoration: InputDecoration(
-                    labelText: 'Title',
+                    labelText: 'Weekly Mileage',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0))),

@@ -50,7 +50,7 @@ class Note {
     map['description']= _description;
     map['priority']= _priority;
     map['date']= _date;
-    map['mileage']= _weeklyMileage;
+    map['weeklyMileage']= _weeklyMileage;
     return map;
   }
 
@@ -60,6 +60,6 @@ class Note {
     this._description = map['description'];
     this._priority = map['priority'];
     this._date = map['date'];
-    this._weeklyMileage = map['mileage'];
+    this._weeklyMileage = map['weeklyMileage'];
   }
 }

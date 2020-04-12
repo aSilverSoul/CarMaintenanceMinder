@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_reminder_app/utils/database_helper.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:maintenance_reminder_app/models/note.dart';
-import 'note_detail.dart';
+import 'package:maintenance_reminder_app/models/car.dart';
+import 'car_detail.dart';
 
 
 class CarList extends StatefulWidget {
@@ -12,12 +12,12 @@ class CarList extends StatefulWidget {
 
 class _CarListState extends State<CarList> {
   DatabaseHelper databaseHelper = DatabaseHelper();
-  List<Note> carList;
+  List<Car> carList;
   int count = 0;
   @override
   Widget build(BuildContext context) {
     if (carList == null) {
-      carList = List<Note>();
+      carList = List<Car>();
       updateListView();
     }
 
@@ -29,10 +29,10 @@ class _CarListState extends State<CarList> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.deepPurple,
-        tooltip: 'Add note',
+        tooltip: 'Add car',
         onPressed: () {
           print('FAB clciked');
-          navigateToDetails(Note('','', 311, 2),'Add car');//weekly average mileage;
+          navigateToDetails(Car('','',2,341),'Add car');//weekly average mileage;
         },
       ),
     );
@@ -80,28 +80,28 @@ class _CarListState extends State<CarList> {
         return Colors.red;
         break;
       case 2:
-        return Colors.yellow;
+        return Colors.white;
         break;
       default:
-        return Colors.yellow;
+        return Colors.white;
     }
   }
 
   Icon getPriorityIcon(int priority) {
     switch (priority) {
       case 1:
-        return Icon(Icons.play_arrow);
+        return Icon(Icons.directions_car);
         break;
       case 2:
-        return Icon(Icons.keyboard_arrow_right);
+        return Icon(Icons.directions_car);
         break;
       default:
-        return Icon(Icons.keyboard_arrow_right);
+        return Icon(Icons.directions_car);
     }
   }
 
-  void _delete(BuildContext context, Note note) async {
-    int result = await databaseHelper.deleteNote(note.id);
+  void _delete(BuildContext context, Car car) async {
+    int result = await databaseHelper.deleteCar(car.id);
     if (result != 0) {
       _showSnackBar(context, 'vehicle info deleted successfully');
       updateListView();
@@ -115,10 +115,10 @@ class _CarListState extends State<CarList> {
     Scaffold.of(context).showSnackBar(snackBar);
   }
 
-  void navigateToDetails(Note note,String title) async {
+  void navigateToDetails(Car car,String title) async {
     bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return NoteDetails(
-          note,title,
+      return CarDetails(
+        car,title,
       );
     }));
     if (result== true){
@@ -129,7 +129,7 @@ class _CarListState extends State<CarList> {
   void updateListView(){
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database){
-      Future<List<Note>> carListFuture = databaseHelper.getCarList();
+      Future<List<Car>> carListFuture = databaseHelper.getCarList();
       carListFuture.then((carList){
         setState(() {
           this.carList = carList;

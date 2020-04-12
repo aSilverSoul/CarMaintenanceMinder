@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/note_list.dart';
+import 'screens/car_list.dart';
 
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Car Maintenance Reminder',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.deepPurple
+          primarySwatch: Colors.deepOrange
       ),
       home: CarList(), //list of cars saved
     );

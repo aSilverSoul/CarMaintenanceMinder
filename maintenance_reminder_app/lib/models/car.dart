@@ -1,15 +1,15 @@
-class Note {
+class Car {
   int _id;
   String _title;
-  String _description;//use description as mileage for now change later
+  String _description;
   String _date;
   int _priority;
   int _weeklyMileage;
 
 
-  Note(this._title, this._date, this._priority, this._weeklyMileage, [this._description]);
+  Car(this._title, this._date, this._priority, this._weeklyMileage, [this._description]);
 
-  Note.withId(this._id, this._title, this._date, this._priority,this._weeklyMileage,
+  Car.withId(this._id, this._title, this._date, this._priority,this._weeklyMileage,
       [this._description]);
 
   int get id => _id;
@@ -54,7 +54,7 @@ class Note {
     return map;
   }
 
-  Note.fromMapObject(Map<String,dynamic> map){
+  Car.fromMapObject(Map<String,dynamic> map){
     this._id = map['id'];
     this._title = map['title'];
     this._description = map['description'];

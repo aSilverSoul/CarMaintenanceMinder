@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:maintenance_reminder_app/models/note.dart';
 import 'package:maintenance_reminder_app/utils/database_helper.dart';
 import 'package:intl/intl.dart';
+import 'package:maintenance_reminder_app/models/car.dart';
 
-class NoteDetails extends StatefulWidget {
+
+class CarDetails extends StatefulWidget {
   final String appBarTitle;
-  final Note note;
+  final Car car;
 
-  const NoteDetails(this.note, this.appBarTitle);
+  const CarDetails(this.car, this.appBarTitle);
 
   @override
-  _NoteDetailsState createState() => _NoteDetailsState(note, appBarTitle);
+  _CarDetailsState createState() => _CarDetailsState(car, appBarTitle);
 }
 
-class _NoteDetailsState extends State<NoteDetails> {
+class _CarDetailsState extends State<CarDetails> {
   final String appBarTitle;
-  final Note note;
+  final Car car;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -24,14 +25,14 @@ class _NoteDetailsState extends State<NoteDetails> {
   TextEditingController weeklyMileageController = TextEditingController();
   static var _priorities = ['High', 'Low'];
 
-  _NoteDetailsState(this.note, this.appBarTitle);
+  _CarDetailsState(this.car, this.appBarTitle);
 
   @override
   Widget build(BuildContext context) {//these are used to display the details of a car
     TextStyle textStyle = Theme.of(context).textTheme.title;
-    titleController.text = note.title;
-    descriptionController.text = note.description;
-    weeklyMileageController.text = note.weeklyMileage.toString();
+    titleController.text = car.title;
+    descriptionController.text = car.description;
+    weeklyMileageController.text = car.weeklyMileage.toString();
 
     return Scaffold(
       appBar: AppBar(
@@ -41,25 +42,6 @@ class _NoteDetailsState extends State<NoteDetails> {
         padding: EdgeInsets.all(15.0),
         child: ListView(
           children: <Widget>[
-            //First element
-            ListTile(
-              title: DropdownButton(
-                items: _priorities.map((String dropDownStringItem) {
-                  return DropdownMenuItem(
-                    value: dropDownStringItem,
-                    child: Text(dropDownStringItem),
-                  );
-                }).toList(),
-                style: textStyle,
-                value: getPriorityAsString(note.priority),
-                onChanged: (String value) {
-                  setState(() {
-                    print(value);
-                    updatePriorityAsInt(value);
-                  });
-                },
-              ),
-            ),
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextField(
@@ -159,10 +141,10 @@ class _NoteDetailsState extends State<NoteDetails> {
   void updatePriorityAsInt(String value) {
     switch (value) {
       case 'High':
-        note.priority = 1;
+        car.priority = 1;
         break;
       case 'Low':
-        note.priority = 2;
+        car.priority = 2;
         break;
     }
   }
@@ -181,31 +163,31 @@ class _NoteDetailsState extends State<NoteDetails> {
   }
 
   void updateTitle() {
-    note.title = titleController.text;
+    car.title = titleController.text;
   }
 
   void updateDescription() {
-    note.description = descriptionController.text;
+    car.description = descriptionController.text;
   }
   void updateWeeklyMileage(){
-    note.weeklyMileage = int.parse(weeklyMileageController.text);//getting weekly mileage
+    car.weeklyMileage = int.parse(weeklyMileageController.text);//getting weekly mileage
   }
 
   void _save() async {
     moveToLastScreen();
     //int daysAdded = ;
-    note.date = DateFormat.yMMMd().format(DateTime.now()); // date time
+    car.date = DateFormat.yMMMd().format(DateTime.now()); // date time
     int result;
-    if (note.id != null) {
-      result = await databaseHelper.updateNote(note);
+    if (car.id != null) {
+      result = await databaseHelper.updateCar(car);
     } else {
-      result = await databaseHelper.insertNote(note);
+      result = await databaseHelper.insertCar(car);
     }
 
     if (result != 0) {
-      _showAlertDialog('Status', 'Note Saved Successfully');
+      _showAlertDialog('Status', 'Car Saved Successfully');
     } else {
-      _showAlertDialog('Status', 'Note Saved Successfully');
+      _showAlertDialog('Status', 'Car Saved Successfully');
     }
   }
 
@@ -219,15 +201,15 @@ class _NoteDetailsState extends State<NoteDetails> {
 
   void _delete() async {
     moveToLastScreen();
-    if(note.id == null){
-      _showAlertDialog('Status', 'No Note was deleted');
+    if(car.id == null){
+      _showAlertDialog('Status', 'No Car was deleted');
       return;
     }
-    int result = await databaseHelper.deleteNote(note.id);
+    int result = await databaseHelper.deleteCar(car.id);
     if (result != 0){
-      _showAlertDialog('Status', 'Note Deleted Successfully');
+      _showAlertDialog('Status', 'Car Deleted Successfully');
     } else {
-      _showAlertDialog('Status', 'Error Occured while Deleting Note');
+      _showAlertDialog('Status', 'Error Occured while Deleting Car');
     }
   }
   void moveToLastScreen(){

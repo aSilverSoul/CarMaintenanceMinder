@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Car Maintenance Reminder',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.deepOrange
+          primarySwatch: Colors.deepPurple
       ),
       home: CarList(), //list of cars saved
     );

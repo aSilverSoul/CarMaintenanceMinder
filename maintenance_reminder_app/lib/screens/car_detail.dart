@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:maintenance_reminder_app/utils/database_helper.dart';
 import 'package:intl/intl.dart';
 import 'package:maintenance_reminder_app/models/car.dart';
@@ -175,8 +176,11 @@ class _CarDetailsState extends State<CarDetails> {
 
   void _save() async {
     moveToLastScreen();
-    //int daysAdded = ;
-    car.date = DateFormat.yMMMd().format(DateTime.now()); // date time
+    int mileageInterval = 3000;
+    int weeksTillChange = (mileageInterval/(car.weeklyMileage)).round();
+    int daysAdded = weeksTillChange*7;
+    DateTime maintenanceDate = Jiffy(DateTime.now()).add(days: daysAdded);
+    car.date = DateFormat.yMMMd().format(maintenanceDate); // date time
     int result;
     if (car.id != null) {
       result = await databaseHelper.updateCar(car);

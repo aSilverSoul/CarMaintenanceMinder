@@ -1,0 +1,4 @@
+#Wed Apr 15 10:44:56 PDT 2020
+base.0=D\:\\flutter\\CarMaintenanceMinder\\maintenance_reminder_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

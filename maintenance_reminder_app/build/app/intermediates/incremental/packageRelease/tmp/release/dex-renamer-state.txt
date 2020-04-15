@@ -1,0 +1,4 @@
+#Wed Apr 15 12:54:58 PDT 2020
+base.0=D\:\\flutter\\CarMaintenanceMinder\\maintenance_reminder_app\\build\\app\\intermediates\\transforms\\r8\\release\\0\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

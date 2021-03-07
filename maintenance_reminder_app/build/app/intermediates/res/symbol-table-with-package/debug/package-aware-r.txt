@@ -1,4 +1,4 @@
-com.example.maintenance_reminder_app
+com.garym.maintenance_reminder_app
 attr alpha
 attr coordinatorLayoutStyle
 attr font
